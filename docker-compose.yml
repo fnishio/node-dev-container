@@ -1,0 +1,31 @@
+default: &default
+  image: node-dev
+  volumes:
+    - $PWD:/usr/src/app
+  working_dir: /usr/src/app
+
+node:
+  <<: *default
+  entrypoint: ['node']
+  ports:
+    - "3000:3000"
+
+npm:
+  <<: *default
+  entrypoint: ['npm']
+
+gulp:
+  <<: *default
+  entrypoint: ['gulp']
+
+init:
+  <<: *default
+  command: npm init
+
+express-install:
+  <<: *default
+  command: npm install express --save
+
+gulp-install:
+  <<: *default
+  command: npm install gulp gulp-coffee --save-dev
